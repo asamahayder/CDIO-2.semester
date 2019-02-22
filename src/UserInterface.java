@@ -6,13 +6,11 @@ import java.util.Scanner;
 
 public class UserInterface {
     IUserDAO IDAO;
-    UserDTO newUser;
-    UserDTO oldUser;
+    UserDTO User;
 
-    public UserInterface(IUserDAO IDAO, UserDTO newUser, UserDTO oldUser) {
+    public UserInterface(IUserDAO IDAO, UserDTO User) {
         this.IDAO=IDAO;
-        this.newUser=newUser;
-        this.oldUser=oldUser;
+        this.User=User;
     }
 
     public void showmenu() throws IUserDAO.DALException, SQLException {
@@ -35,7 +33,7 @@ public class UserInterface {
                     PressEnterToContinue(menuScanner);
                     break;
                 case 3:
-                    IDAO.createUser(newUser);
+                    IDAO.createUser(User);
                     PressEnterToContinue(menuScanner);
                     break;
                 case 4:
@@ -43,7 +41,7 @@ public class UserInterface {
                     PressEnterToContinue(menuScanner);
                     break;
                 case 5:
-                    IDAO.updateUser(oldUser);
+                    IDAO.updateUser(User);
                     PressEnterToContinue(menuScanner);
                     break;
                 case 6:

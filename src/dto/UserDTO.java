@@ -3,6 +3,7 @@ package dto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class UserDTO implements Serializable {
 
@@ -12,20 +13,28 @@ public class UserDTO implements Serializable {
     private String ini;
     private List<String> roles;
     //TODO Add relevant fields
+    Scanner s = new Scanner(System.in);
 
     public int getUserId() {
+        System.out.println("Indtast userid");
+        userId = s.nextInt();
         return userId;
     }
     public void setUserId(int userId) {
         this.userId = userId;
     }
     public String getUserName() {
+        s.nextLine();
+        System.out.println("Indtast username");
+        userName = s.nextLine();
         return userName;
     }
     public void setUserName(String userName) {
         this.userName = userName;
     }
     public String getIni() {
+        System.out.println("Indtast ini");
+        ini = s.nextLine();
         return ini;
     }
     public void setIni(String ini) {
@@ -33,6 +42,8 @@ public class UserDTO implements Serializable {
     }
 
     public List<String> getRoles() {
+        System.out.println("Indtast roles");
+
         return roles;
     }
     public void setRoles(List<String> roles) {

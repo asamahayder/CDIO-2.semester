@@ -33,8 +33,8 @@ public class UserDAOimpls185095 implements IUserDAO {
     //Færdigt?
     public UserDTO getUser(int userID) throws DALException, SQLException {
         this.userId=userID;
-        System.out.println(showUser.getString(1) + ": " + resultSet.getString(2) + ": "+
-                resultSet.getString(3) + ": " + resultSet.getString(4));
+        System.out.println(showUser.getString(1) + ": " + showUser.getString(2) + ": "+
+                showUser.getString(3) + ": " + showUser.getString(4));
         return null;
     }
 

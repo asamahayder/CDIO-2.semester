@@ -2,6 +2,7 @@ package dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +44,7 @@ public class UserDTO implements Serializable {
 
     public List<String> getRoles() {
         System.out.println("Indtast roles");
+        roles = Collections.singletonList(s.nextLine());
 
         return roles;
     }

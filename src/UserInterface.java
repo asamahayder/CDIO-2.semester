@@ -24,29 +24,38 @@ public class UserInterface {
 
             switch (menuTal) {
                 case 1:
+                    System.out.println("----Show User List Menu----");
                     IDAO.getUserList();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 2:
-                    //IDAO.getUser();
+                    System.out.println("----Lookup User Menu----");
+                    IDAO.getUser(menuScanner.nextInt());
+                    System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 3:
+                    System.out.println("----Create User Menu----");
                     IDAO.createUser(User);
+                    System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 4:
-                    //IDAO.deleteUser();
+                    System.out.println("----Delete User Menu----");
+                    IDAO.deleteUser(menuScanner.nextInt());
+                    System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 5:
+                    System.out.println("----Update User Menu----");
                     IDAO.updateUser(User);
+                    System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 6:
+                    System.out.println("----Goodbye!----");
                     menuIsOn = false;
-                    System.out.println("Goodbye!");
                     break;
 
             }
@@ -57,19 +66,18 @@ public class UserInterface {
     private void PressEnterToContinue(Scanner menuScanner) {
         System.out.println("Indtast noget for at forsætte");
         menuScanner.nextLine();
+        menuScanner.nextLine();
     }
 
 
     private void MainMenuText() {
-        System.out.println("########################################");
-        System.out.println("Dette er Aflevering1 databasen");
-        System.out.println("Indtast:");
-        System.out.println("1: Se listen over databasen");
-        System.out.println("2: Hent en specifik bruger i databasen");
-        System.out.println("3: Opret en bruger i databasen");
-        System.out.println("4: Slet en bruger i databasen");
-        System.out.println("5: Opdater en bruger i databasen");
-        System.out.println("6: Afslut programmet");
+        System.out.println("#########Aflevering1 databasen##########");
+        System.out.println("1: Se listen over databasen            #");
+        System.out.println("2: Hent en specifik bruger             #");
+        System.out.println("3: Opret en bruger                     #");
+        System.out.println("4: Slet en bruger                      #");
+        System.out.println("5: Opdater en bruger                   #");
+        System.out.println("6: Afslut programmet                   #");
         System.out.println("########################################");
     }
 

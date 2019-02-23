@@ -18,7 +18,7 @@ public class UserInterface {
         boolean menuIsOn = true;
 
         MainMenuText();
-        while (menuIsOn) {
+        while (menuIsOn == true) {
             int menuTal = 0;
             menuTal = menuScanner.nextInt();
 
@@ -31,6 +31,7 @@ public class UserInterface {
                     break;
                 case 2:
                     System.out.println("----Lookup User Menu----");
+                    System.out.println("Indtast userid");
                     IDAO.getUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);
@@ -43,6 +44,7 @@ public class UserInterface {
                     break;
                 case 4:
                     System.out.println("----Delete User Menu----");
+                    System.out.println("Indtast userid");
                     IDAO.deleteUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);
@@ -59,7 +61,8 @@ public class UserInterface {
                     break;
 
             }
-            if (menuIsOn = true) MainMenuText();
+            if (menuIsOn == false) break;
+            else MainMenuText();
         }
     }
 

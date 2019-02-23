@@ -51,6 +51,8 @@ public class UserDAOimpls185095 implements IUserDAO {
             while (resultSet.next()) {
                 UserDTO user = new UserDTO();
                 ResultSetLoop(resultSet, user);
+                userList.add(user);
+                System.out.println(userList);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,8 +92,9 @@ public class UserDAOimpls185095 implements IUserDAO {
     public void updateUser(UserDTO user) throws DALException {
         //Definerer strengen som bliver brugt til at ændre på informationen, der er en constraint til at kun ændre på de
         //informationer der hærer til et specifikt id
+        int userid = user.getUserId();
         String updateByID = "UPDATE aflevering1 SET username='" + user.getUserName() + "', roles='" + user.getRoles() + "', ini='" + user.getIni() + "' " +
-                "WHERE userid='" + user.getUserId() + "'";
+                "WHERE userid='" + userid + "'";
         try {
             //Opdaterer databasen ved brug at strengen
             statement.executeUpdate(updateByID);

@@ -19,13 +19,13 @@ public class UserDTO implements Serializable {
     public int getUserId() {
         System.out.println("Indtast userid");
         userId = s.nextInt();
+        s.nextLine();
         return userId;
     }
     public void setUserId(int userId) {
         this.userId = userId;
     }
     public String getUserName() {
-        s.nextLine();
         System.out.println("Indtast username");
         userName = s.nextLine();
         return userName;

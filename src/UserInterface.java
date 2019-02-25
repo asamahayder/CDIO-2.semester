@@ -1,16 +1,14 @@
 import dal.*;
-import dto.*;
 
 import java.sql.*;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class UserInterface {
-    IUserDAO IDAO;
-    UserDTO User;
+    Functionaity functionaity;
 
-    public UserInterface(IUserDAO IDAO, UserDTO User) {
-        this.IDAO=IDAO;
-        this.User=User;
+    public UserInterface(Functionaity functionaity) {
+        this.functionaity=functionaity;
     }
 
     public void showmenu() throws IUserDAO.DALException, SQLException {
@@ -25,33 +23,33 @@ public class UserInterface {
             switch (menuTal) {
                 case 1:
                     System.out.println("----Show User List Menu----");
-                    IDAO.getUserList();
+                    functionaity.getUserList();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 2:
                     System.out.println("----Lookup User Menu----");
                     System.out.println("Indtast userid som skal findes");
-                    IDAO.getUser(menuScanner.nextInt());
+                    functionaity.getUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 3:
                     System.out.println("----Create User Menu----");
-                    IDAO.createUser(User);
+                    inputTilUser();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 4:
                     System.out.println("----Delete User Menu----");
                     System.out.println("Indtast userid som skal slettes");
-                    IDAO.deleteUser(menuScanner.nextInt());
+                    functionaity.deleteUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 5:
                     System.out.println("----Update User Menu----");
-                    IDAO.updateUser(User);
+                    functionaity.updateUser(User);
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -82,6 +80,26 @@ public class UserInterface {
         System.out.println("5: Opdater en bruger                   #");
         System.out.println("6: Afslut programmet                   #");
         System.out.println("########################################");
+    }
+
+    private void inputTilUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("indtast ID: ");
+        int ID = scanner.nextInt();
+        System.out.println("indtast username: ");
+        scanner.nextLine();
+        String username = scanner.nextLine();
+        System.out.println("indtast Initialer: ");
+        String ini = scanner.nextLine();
+        System.out.println("indtast én rolle: ");
+        String role = scanner.nextLine();
+        System.out.println("indtast CPR: ");
+        int CPR = scanner.nextInt();
+        System.out.println("indtast password: ");
+        scanner.nextLine();
+        String password = scanner.nextLine();
+        functionaity.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+
     }
 
 }

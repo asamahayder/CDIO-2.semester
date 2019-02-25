@@ -1,6 +1,6 @@
 package dal;
 
-import dto.UserDTO;
+import dto.User;
 
 import java.sql.*;
 import java.util.*;
@@ -21,8 +21,8 @@ public class UserDAO_db implements IUserDAO {
     @Override
     //Et userid bliver defineret i parameteren og derefter finder metoden brugeren ud fra det id.
     //Denne metode sætter også den valgte bruger ind i objektet da den har fundet id'et.
-    public UserDTO getUser(int userID) throws DALException {
-        UserDTO user = new UserDTO();
+    public User getUser(int userID) throws DALException {
+        User user = new User();
         ResultSet showUser;
         try {
             showUser = statement.executeQuery("SELECT * FROM CDIO1 WHERE userid = '" + userID + "'");
@@ -40,16 +40,16 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     //Laver en liste af tabellen som er defineret i connection
-    public List<UserDTO> getUserList() throws DALException {
+    public List<User> getUserList() throws DALException {
         //Laver en arrayliste og definerer hvad for en query der skal søges efter i databasen
         ResultSet resultSet;
-        ArrayList<UserDTO> userList = new ArrayList<>();
+        ArrayList<User> userList = new ArrayList<>();
 
         try {
             //Viser en liste ud fra hvad er i databasen og hænger det sammen med nye user objekter for hver række i tabellen
             resultSet = statement.executeQuery("SELECT * FROM CDIO1");
             while (resultSet.next()) {
-                UserDTO user = new UserDTO();
+                User user = new User(0);
                 ResultSetLoop(resultSet, user);
                 userList.add(user);
                 System.out.println(userList);
@@ -62,11 +62,11 @@ public class UserDAO_db implements IUserDAO {
     }
 
     //Extractet metode: Det er loopen der tjekker rækkerene og indtaster det ind i objekternes plads hvor der er nødvendigt
-    private void ResultSetLoop(ResultSet resultSet, UserDTO user) throws SQLException {
+    private void ResultSetLoop(ResultSet resultSet, User user) throws SQLException {
         user.setUserId(resultSet.getInt(1));
         user.setUserName(resultSet.getString(2));
         user.setIni(resultSet.getString(3));
-        user.setCpr(resultSet.getString(4));
+        user.setCpr(resultSet.getInt(4));
         user.setPassword(resultSet.getString(5));
         user.setRoles(Collections.singletonList(resultSet.getString(6)));
 
@@ -77,7 +77,7 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     //Opretter en bruger i databasen ud fra user objektet
-    public void createUser(UserDTO user) throws DALException {
+    public void createUser(User user) throws DALException {
         //Definerer strengen som bliver brugt til at sende informationen ind i databasen
         String createUser = "INSERT INTO CDIO1 (userid, username, ini, cpr, pass, roles) " +
                 "VALUES('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getIni() + "', '" + user.getCpr() + "', '" + user.getPassword() + "', '" + user.getRoles()+ "')";
@@ -91,7 +91,7 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     //Opdaterer en gammel bruger med ny information ved brug at user objektet
-    public void updateUser(UserDTO user) throws DALException {
+    public void updateUser(User user) throws DALException {
         //Definerer strengen som bliver brugt til at ændre på informationen, der er en constraint til at kun ændre på de
         //informationer der hærer til et specifikt id
         int userid = user.getUserId();

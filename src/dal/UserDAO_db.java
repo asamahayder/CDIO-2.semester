@@ -5,7 +5,7 @@ import dto.UserDTO;
 import java.sql.*;
 import java.util.*;
 
-public class UserDAOimpls185095 implements IUserDAO {
+public class UserDAO_db implements IUserDAO {
 
     //Alle variabler der bliver brugt
 
@@ -13,7 +13,7 @@ public class UserDAOimpls185095 implements IUserDAO {
     private Connection connection;
     private Statement statement;
 
-    public UserDAOimpls185095() throws SQLException {
+    public UserDAO_db() throws SQLException {
         connection = DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185095?" + "user=s185095&password=qSmM4qcR0JF1sAnR6OZss");
         statement = connection.createStatement();
     }
@@ -25,7 +25,7 @@ public class UserDAOimpls185095 implements IUserDAO {
         UserDTO user = new UserDTO();
         ResultSet showUser;
         try {
-            showUser = statement.executeQuery("SELECT * FROM aflevering1 WHERE userid = '" + userID + "'");
+            showUser = statement.executeQuery("SELECT * FROM CDIO1 WHERE userid = '" + userID + "'");
             //Sætter nuværende værdier ind i user objektet og viser en tekst af hvilken bruger det id hører sammen med
             while (showUser.next()) {
                 ResultSetLoop(showUser, user);
@@ -47,7 +47,7 @@ public class UserDAOimpls185095 implements IUserDAO {
 
         try {
             //Viser en liste ud fra hvad er i databasen og hænger det sammen med nye user objekter for hver række i tabellen
-            resultSet = statement.executeQuery("SELECT * FROM aflevering1");
+            resultSet = statement.executeQuery("SELECT * FROM CDIO1");
             while (resultSet.next()) {
                 UserDTO user = new UserDTO();
                 ResultSetLoop(resultSet, user);
@@ -65,11 +65,13 @@ public class UserDAOimpls185095 implements IUserDAO {
     private void ResultSetLoop(ResultSet resultSet, UserDTO user) throws SQLException {
         user.setUserId(resultSet.getInt(1));
         user.setUserName(resultSet.getString(2));
-        user.setRoles(Collections.singletonList(resultSet.getString(3)));
-        user.setIni(resultSet.getString(4));
+        user.setIni(resultSet.getString(3));
+        user.setCpr(resultSet.getString(4));
+        user.setPassword(resultSet.getString(5));
+        user.setRoles(Collections.singletonList(resultSet.getString(6)));
 
-        System.out.println(resultSet.getString(1) + ": " + resultSet.getString(2) + ": " +
-                resultSet.getString(3) + ": " + resultSet.getString(4));
+        System.out.println(resultSet.getString(1) + resultSet.getString(2) + resultSet.getString(3) +
+                resultSet.getString(4) + resultSet.getString(5) + resultSet.getString(6))
         ;
     }
 
@@ -77,8 +79,8 @@ public class UserDAOimpls185095 implements IUserDAO {
     //Opretter en bruger i databasen ud fra user objektet
     public void createUser(UserDTO user) throws DALException {
         //Definerer strengen som bliver brugt til at sende informationen ind i databasen
-        String createUser = "INSERT INTO aflevering1 (userID, username, roles, ini) " +
-                "VALUES('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getRoles() + "', '" + user.getIni() + "')";
+        String createUser = "INSERT INTO CDIO1 (userid, username, ini, cpr, pass, roles) " +
+                "VALUES('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getIni() + "', '" + user.getCpr() + "', '" + user.getPassword() + "', '" + user.getRoles()+ "')";
         try {
             //Opdaterer databasen med de nye værdier
             statement.executeUpdate(createUser);
@@ -93,7 +95,7 @@ public class UserDAOimpls185095 implements IUserDAO {
         //Definerer strengen som bliver brugt til at ændre på informationen, der er en constraint til at kun ændre på de
         //informationer der hærer til et specifikt id
         int userid = user.getUserId();
-        String updateByID = "UPDATE aflevering1 SET username='" + user.getUserName() + "', roles='" + user.getRoles() + "', ini='" + user.getIni() + "' " +
+        String updateByID = "UPDATE CDIO1 SET username='" + user.getUserName() + "', ini='" + user.getIni() + "', cpr='" + user.getCpr() + "', pass='" + user.getPassword() + "', roles='" + user.getRoles() + "'" +
                 "WHERE userid='" + userid + "'";
         try {
             //Opdaterer databasen ved brug at strengen
@@ -107,7 +109,7 @@ public class UserDAOimpls185095 implements IUserDAO {
     //Sletter en bruger ud fra deres bruger id
     public void deleteUser(int userId) throws DALException {
         //Definerer strengen med clause koden er i
-        String deleteByUserID = "DELETE FROM aflevering1 WHERE userid = '" + userId + "'";
+        String deleteByUserID = "DELETE FROM CDIO1 WHERE userid = '" + userId + "'";
         try {
             //bruger strengen til at opdatere databasen
             statement.executeUpdate(deleteByUserID);

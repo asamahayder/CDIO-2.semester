@@ -13,6 +13,9 @@ public class UserDTO implements Serializable {
     private String userName;
     private String ini;
     private List<String> roles;
+
+    private String cpr;
+    private String password;
     //TODO Add relevant fields
     Scanner s = new Scanner(System.in);
 
@@ -54,6 +57,26 @@ public class UserDTO implements Serializable {
 
     public void addRole(String role){
         this.roles.add(role);
+    }
+
+    public String getCpr() {
+        System.out.println("Indtast cpr");
+        cpr = s.nextLine();
+        return cpr;
+    }
+
+    public void setCpr(String cpr) {
+        this.cpr = cpr;
+    }
+
+    public String getPassword() {
+        System.out.println("Indtast password");
+        s.nextLine();
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     /**
      *

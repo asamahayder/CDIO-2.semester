@@ -31,7 +31,7 @@ public class UserInterface {
                     break;
                 case 2:
                     System.out.println("----Lookup User Menu----");
-                    System.out.println("Indtast userid");
+                    System.out.println("Indtast userid som skal findes");
                     IDAO.getUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);
@@ -44,7 +44,7 @@ public class UserInterface {
                     break;
                 case 4:
                     System.out.println("----Delete User Menu----");
-                    System.out.println("Indtast userid");
+                    System.out.println("Indtast userid som skal slettes");
                     IDAO.deleteUser(menuScanner.nextInt());
                     System.out.println();
                     PressEnterToContinue(menuScanner);

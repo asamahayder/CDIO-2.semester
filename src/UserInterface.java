@@ -36,7 +36,7 @@ public class UserInterface {
                     break;
                 case 3:
                     System.out.println("----Create User Menu----");
-                    inputTilUser();
+                    input("createUser");
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -49,7 +49,7 @@ public class UserInterface {
                     break;
                 case 5:
                     System.out.println("----Update User Menu----");
-                    functionaity.updateUser(User);
+                    input("updateUser");
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -82,7 +82,7 @@ public class UserInterface {
         System.out.println("########################################");
     }
 
-    private void inputTilUser(){
+    private void input(String method){
         Scanner scanner = new Scanner(System.in);
         System.out.println("indtast ID: ");
         int ID = scanner.nextInt();
@@ -98,9 +98,16 @@ public class UserInterface {
         System.out.println("indtast password: ");
         scanner.nextLine();
         String password = scanner.nextLine();
-        functionaity.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+        if (method.equals("createUser")){
+            functionaity.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+        }
+        else if (method.equals("updateUser")){
+            functionaity.updateUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+        }
+
 
     }
+
 
 }
 

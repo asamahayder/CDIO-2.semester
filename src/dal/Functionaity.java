@@ -39,6 +39,23 @@ public class Functionaity {
 
     }
 
+    public void updateUser(int ID, String username, String ini, List roles, int CPR, String password){
+        User user = new User(0);
+        user.setUserName(username);
+        user.setUserId(ID);
+        user.setCpr(CPR);
+        user.setPassword(password);
+        user.setIni(ini);
+        user.setRoles(roles);
+        try {
+            userDAO.updateUser(user);
+        }catch (IUserDAO.DALException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void
+
     public void
 
 }

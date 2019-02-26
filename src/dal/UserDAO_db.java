@@ -22,7 +22,7 @@ public class UserDAO_db implements IUserDAO {
     //Et userid bliver defineret i parameteren og derefter finder metoden brugeren ud fra det id.
     //Denne metode sætter også den valgte bruger ind i objektet da den har fundet id'et.
     public User getUser(int userID) throws DALException {
-        User user = new User();
+        User user = new User(0);
         ResultSet showUser;
         try {
             showUser = statement.executeQuery("SELECT * FROM CDIO1 WHERE userid = '" + userID + "'");

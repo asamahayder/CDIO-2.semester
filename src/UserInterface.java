@@ -42,8 +42,7 @@ public class UserInterface {
                     break;
                 case 4:
                     System.out.println("----Delete User Menu----");
-                    System.out.println("Indtast userid som skal slettes");
-                    functionaity.deleteUser(menuScanner.nextInt());
+                    inputTilDeleteUser();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -104,8 +103,14 @@ public class UserInterface {
         else if (method.equals("updateUser")){
             functionaity.updateUser(ID,username,ini, Collections.singletonList(role),CPR,password);
         }
+        scanner.close();
+    }
 
-
+    private void inputTilDeleteUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("indtast et userID som skal slettes: ");
+        int userID = scanner.nextInt();
+        functionaity.deleteUser(userID);
     }
 
 

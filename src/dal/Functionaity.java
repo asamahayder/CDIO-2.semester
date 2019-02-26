@@ -54,8 +54,20 @@ public class Functionaity {
         }
     }
 
-    public void
+    public void deleteUser(int userID){
+        try{
+            userDAO.deleteUser(userID);
+        }catch (IUserDAO.DALException e){
+            e.printStackTrace();
+        }
+    }
 
-    public void
+    public void getUserList(){
+        try {
+            userDAO.getUserList();
+        }catch (IUserDAO.DALException e){
+            e.printStackTrace();
+        }
+    }
 
 }

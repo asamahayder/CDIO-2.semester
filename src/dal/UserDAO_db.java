@@ -31,6 +31,7 @@ public class UserDAO_db implements IUserDAO {
                 ResultSetLoop(showUser, user);
             }
             showUser.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,6 +55,7 @@ public class UserDAO_db implements IUserDAO {
                 userList.add(user);
                 System.out.println(userList);
             }
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -84,6 +86,7 @@ public class UserDAO_db implements IUserDAO {
         try {
             //Opdaterer databasen med de nye værdier
             statement.executeUpdate(createUser);
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -100,6 +103,7 @@ public class UserDAO_db implements IUserDAO {
         try {
             //Opdaterer databasen ved brug at strengen
             statement.executeUpdate(updateByID);
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,6 +117,7 @@ public class UserDAO_db implements IUserDAO {
         try {
             //bruger strengen til at opdatere databasen
             statement.executeUpdate(deleteByUserID);
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

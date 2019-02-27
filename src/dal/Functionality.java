@@ -3,6 +3,8 @@ package dal;
 import dto.User;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Functionality {
@@ -14,6 +16,15 @@ public class Functionality {
 
     public Functionality(IUserDAO userDAO) {
         this.userDAO=userDAO;
+    }
+
+    class SortArrayList implements Comparator<User> {
+
+        @Override
+        public int compare(User a, User b) {
+            return a.getUserId() - b.getUserId();
+        }
+
     }
 
     public void createConnection() throws SQLException {
@@ -79,6 +90,7 @@ public class Functionality {
         }catch (IUserDAO.DALException e){
             e.printStackTrace();
         }
+        Collections.sort(users, new SortArrayList());
     }
 
 }

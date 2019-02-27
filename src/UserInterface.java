@@ -44,20 +44,20 @@ public class UserInterface {
                 case 3:
                     System.out.println("----Create User Menu----");
                     functionality.createConnection();
-                    input("createUser");
+                    input("createUser", menuScanner);
                     functionality.closeConnection();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 4:
                     System.out.println("----Delete User Menu----");
-                    inputTilDeleteUser();
+                    inputTilDeleteUser(menuScanner);
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 5:
                     System.out.println("----Update User Menu----");
-                    input("updateUser");
+                    input("updateUser", menuScanner);
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -67,9 +67,10 @@ public class UserInterface {
                     break;
 
             }
-            if (menuIsOn == false) break;
+            if (!menuIsOn) break;
             else MainMenuText();
         }
+        menuScanner.close();
     }
 
     private void PressEnterToContinue(Scanner menuScanner) {
@@ -89,34 +90,31 @@ public class UserInterface {
         System.out.println("########################################");
     }
 
-    private void input(String method){
-        Scanner scanner = new Scanner(System.in);
+    private void input(String method, Scanner menuScanner){
         System.out.println("indtast ID: ");
-        int ID = scanner.nextInt();
+        int ID = menuScanner.nextInt();
         System.out.println("indtast username: ");
-        scanner.nextLine();
-        String username = scanner.nextLine();
+        menuScanner.nextLine();
+        String username = menuScanner.nextLine();
         System.out.println("indtast Initialer: ");
-        String ini = scanner.nextLine();
+        String ini = menuScanner.nextLine();
         System.out.println("indtast én rolle: ");
-        String role = scanner.nextLine();
+        String role = menuScanner.nextLine();
         System.out.println("indtast CPR: ");
-        String CPR = scanner.nextLine();
+        String CPR = menuScanner.nextLine();
         System.out.println("indtast password: ");
-        String password = scanner.nextLine();
+        String password = menuScanner.nextLine();
         if (method.equals("createUser")){
             functionality.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
         }
         else if (method.equals("updateUser")){
             functionality.updateUser(ID,username,ini, Collections.singletonList(role),CPR,password);
         }
-        scanner.close();
     }
 
-    private void inputTilDeleteUser(){
-        Scanner scanner = new Scanner(System.in);
+    private void inputTilDeleteUser(Scanner menuScanner){
         System.out.println("indtast et userID som skal slettes: ");
-        int userID = scanner.nextInt();
+        int userID = menuScanner.nextInt();
         functionality.deleteUser(userID);
     }
 

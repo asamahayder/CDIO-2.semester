@@ -9,15 +9,27 @@ public class Functionaity {
 
     IUserDAO userDAO;
 
+    public User user;
+    public List<User> users;
+
     public Functionaity(IUserDAO userDAO) {
         this.userDAO=userDAO;
     }
 
+    public void createConnection() throws SQLException {
+        userDAO.createConnection();
+    }
+
+    public void closeConnection() throws SQLException{
+        userDAO.closeConnection();
+    }
+
     public User getUser(int userId){
-        User user = new User(0);
         try {
             user = userDAO.getUser(userId);
         }catch (IUserDAO.DALException e){
+            e.printStackTrace();
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return user;
@@ -64,7 +76,7 @@ public class Functionaity {
 
     public void getUserList(){
         try {
-            userDAO.getUserList();
+            users = userDAO.getUserList();
         }catch (IUserDAO.DALException e){
             e.printStackTrace();
         }

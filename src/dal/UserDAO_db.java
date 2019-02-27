@@ -14,12 +14,20 @@ public class UserDAO_db implements IUserDAO {
     private Statement statement;
 
     public UserDAO_db() throws SQLException {
+        createConnection();
+    }
+
+    public void createConnection() throws SQLException{
         connection = DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185095?" + "user=s185095&password=qSmM4qcR0JF1sAnR6OZss");
         statement = connection.createStatement();
     }
 
+    public void closeConnection() throws SQLException {
+        connection.close();
+    }
+
     @Override
-    public User getUser(int userID) throws DALException {
+    public User getUser(int userID) throws DALException, SQLException {
         User user = new User(0);
         ArrayList<String> roles = new ArrayList<>();
         ResultSet showUser;
@@ -29,7 +37,6 @@ public class UserDAO_db implements IUserDAO {
                 ResultSetLoop(showUser, user, roles);
             }
             showUser.close();
-            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

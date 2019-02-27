@@ -12,15 +12,18 @@ public class UserDAO_al implements IUserDAO {
 
     @Override
     public User getUser(int userId) {
-        userId-=1;
         User user = new User(0);
-
-        user.setUserId(user.getUserId());
-        user.setUserName(user.getUserName());
-        user.setIni(user.getIni());
-        user.setRoles(user.getRoles());
-        user.setCpr(user.getCpr());
-        user.setPassword(user.getPassword());
+        for (User userfromlist:userList){
+            if (userfromlist.getUserId()==userId){
+                user=userfromlist;
+            }
+        }
+       /* user.setUserId(userList.get(userId).getUserId());
+        user.setUserName(userList.get(userId).getUserName());
+        user.setIni(userList.get(userId).getIni());
+        user.setRoles(userList.get(userId).getRoles());
+        user.setCpr(userList.get(userId).getCpr());
+        user.setPassword(userList.get(userId).getPassword());*/
         return user;
     }
 

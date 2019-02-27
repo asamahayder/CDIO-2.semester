@@ -1,9 +1,11 @@
 package dal;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import dto.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserDAO_al implements IUserDAO {
@@ -29,20 +31,10 @@ public class UserDAO_al implements IUserDAO {
 
     @Override
     public List<User> getUserList() {
-        ArrayList<User> userArrayList = new ArrayList<>();
-
-        for (int i = 0; i < userArrayList.size(); i++) {
-            User user = new User(0);
-            userArrayList.add(user);
-
-        }
-
-        /*for (int i = 0; i < userList.size(); i++){
-            System.out.println(userList.get(i));
-        }*/
-
         return userList;
     }
+
+
 
     @Override
     public void createUser(User user)  {

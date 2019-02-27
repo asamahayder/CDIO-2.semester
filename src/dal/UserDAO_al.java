@@ -1,7 +1,7 @@
 package dal;
-
 import dto.User;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,40 +9,41 @@ import java.util.List;
 public class UserDAO_al implements IUserDAO {
 
     private List<User> userList = new ArrayList<>();
-    private User user;
-
-
-
 
     @Override
     public User getUser(int userId) {
-        for (User _user : userList)
-            if (_user.getUserId() == userId) {
-                System.out.println(userList.get(userId-1));
-                return user;
-            }
-        return null;
+        userId-=1;
+        User user = new User(0);
+
+        user.setUserId(user.getUserId());
+        user.setUserName(user.getUserName());
+        user.setIni(user.getIni());
+        user.setRoles(user.getRoles());
+        user.setCpr(user.getCpr());
+        user.setPassword(user.getPassword());
+        return user;
     }
 
     @Override
     public List<User> getUserList() {
+        ArrayList<User> userArrayList = new ArrayList<>();
 
-        for (int i = 0; i < userList.size(); i++){
-            System.out.println(userList.get(i));
+        for (int i = 0; i < userArrayList.size(); i++) {
+            User user = new User(0);
+            userArrayList.add(user);
+
         }
+
+        /*for (int i = 0; i < userList.size(); i++){
+            System.out.println(userList.get(i));
+        }*/
 
         return userList;
     }
 
     @Override
     public void createUser(User user)  {
-        for (User _user : userList) {
-            if (_user.getUserId() == user.getUserId()) {
-            }
-        }
         userList.add(user);
-
-
     }
 
     @Override
@@ -55,5 +56,15 @@ public class UserDAO_al implements IUserDAO {
     public void deleteUser(int userId) {
 
         userList.remove(userId-1);
+    }
+
+    @Override
+    public void createConnection() throws SQLException {
+
+    }
+
+    @Override
+    public void closeConnection() throws SQLException {
+
     }
 }

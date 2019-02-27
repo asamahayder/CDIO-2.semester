@@ -17,7 +17,7 @@ public class UserInterface {
         boolean menuIsOn = true;
 
         MainMenuText();
-        while (menuIsOn == true) {
+        while (menuIsOn) {
             int menuTal = 0;
             menuTal = menuScanner.nextInt();
 
@@ -128,9 +128,9 @@ public class UserInterface {
         System.out.println(" ");
         System.out.println("UserId: " + functionality.user.getUserId());
         System.out.println("Username: " + functionality.user.getUserName());
-        System.out.println("User initials: " + functionality.user.getIni());
-        System.out.println("User CPR: " + functionality.user.getCpr());
-        System.out.println("User password: " + functionality.user.getPassword());
+        System.out.println("Initials: " + functionality.user.getIni());
+        System.out.println("CPR: " + functionality.user.getCpr());
+        System.out.println("Password: " + functionality.user.getPassword());
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < functionality.user.getRoles().size() ; i++) {
             stringBuilder.append(functionality.user.getRoles().get(i));
@@ -139,7 +139,7 @@ public class UserInterface {
             }
         }
         String roleString = stringBuilder.toString();
-        System.out.println("users: " + roleString);
+        System.out.println("Roles: " + roleString);
     }
 
     private void printUserList(){
@@ -147,16 +147,16 @@ public class UserInterface {
             System.out.println(" ");
             System.out.println("UserId: " + functionality.users.get(i).getUserId());
             System.out.println("Username: " + functionality.users.get(i).getUserName());
-            System.out.println("User initials: " + functionality.users.get(i).getIni());
-            System.out.println("User CPR: " + functionality.users.get(i).getCpr());
-            System.out.println("User password: " + functionality.users.get(i).getPassword());
+            System.out.println("Initials: " + functionality.users.get(i).getIni());
+            System.out.println("CPR: " + functionality.users.get(i).getCpr());
+            System.out.println("Password: " + functionality.users.get(i).getPassword());
             StringBuilder stringBuilder = new StringBuilder();
             for (int j = 0; j < functionality.users.get(i).getRoles().size() ; j++) {
                 stringBuilder.append(functionality.users.get(i).getRoles().get(j));
                 stringBuilder.append(",");
             }
             String roleString = stringBuilder.toString();
-            System.out.println("users: " + roleString);
+            System.out.println("Roles: " + roleString);
         }
 
     }

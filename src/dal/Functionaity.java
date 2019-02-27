@@ -23,7 +23,7 @@ public class Functionaity {
         return user;
     }
 
-    public void createUser(int ID, String username, String ini, List roles, int CPR, String password){
+    public void createUser(int ID, String username, String ini, List roles, String CPR, String password){
         User user = new User(ID, username,ini,roles,CPR,password);
         user.setUserName(username);
         user.setUserId(ID);
@@ -39,7 +39,7 @@ public class Functionaity {
 
     }
 
-    public void updateUser(int ID, String username, String ini, List roles, int CPR, String password){
+    public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){
         User user = new User(0);
         user.setUserName(username);
         user.setUserId(ID);

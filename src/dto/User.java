@@ -14,12 +14,12 @@ public class User implements Serializable {
     private String ini;
     private List<String> roles;
 
-    private int cpr;
+    private String cpr;
     private String password;
 
 
 
-    public User(int userId, String userName, String ini, List<String> roles, int cpr, String password) {
+    public User(int userId, String userName, String ini, List<String> roles, String cpr, String password) {
         this.userId = userId;
         this.userName = userName;
         this.ini = ini;
@@ -64,11 +64,11 @@ public class User implements Serializable {
         this.roles.add(role);
     }
 
-    public int getCpr() {
+    public String getCpr() {
         return cpr;
     }
 
-    public void setCpr(int cpr) {
+    public void setCpr(String cpr) {
         this.cpr = cpr;
     }
 

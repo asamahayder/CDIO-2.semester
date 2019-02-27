@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class UserInterface {
-    Functionaity functionaity;
+    Functionaity functionality;
 
-    public UserInterface(Functionaity functionaity) {
-        this.functionaity=functionaity;
+    public UserInterface(Functionaity functionality) {
+        this.functionality = functionality;
     }
 
     public void showmenu() throws IUserDAO.DALException, SQLException {
@@ -23,14 +23,16 @@ public class UserInterface {
             switch (menuTal) {
                 case 1:
                     System.out.println("----Show User List Menu----");
-                    functionaity.getUserList();
+                    functionality.getUserList();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 2:
                     System.out.println("----Lookup User Menu----");
                     System.out.println("Indtast userid som skal findes");
-                    functionaity.getUser(menuScanner.nextInt());
+                    int id = menuScanner.nextInt();
+                   // functionality.getUser(id);
+                    printUser(id);
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -93,15 +95,14 @@ public class UserInterface {
         System.out.println("indtast én rolle: ");
         String role = scanner.nextLine();
         System.out.println("indtast CPR: ");
-        int CPR = scanner.nextInt();
+        String CPR = scanner.nextLine();
         System.out.println("indtast password: ");
-        scanner.nextLine();
         String password = scanner.nextLine();
         if (method.equals("createUser")){
-            functionaity.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+            functionality.createUser(ID,username,ini, Collections.singletonList(role),CPR,password);
         }
         else if (method.equals("updateUser")){
-            functionaity.updateUser(ID,username,ini, Collections.singletonList(role),CPR,password);
+            functionality.updateUser(ID,username,ini, Collections.singletonList(role),CPR,password);
         }
         scanner.close();
     }
@@ -110,9 +111,24 @@ public class UserInterface {
         Scanner scanner = new Scanner(System.in);
         System.out.println("indtast et userID som skal slettes: ");
         int userID = scanner.nextInt();
-        functionaity.deleteUser(userID);
+        functionality.deleteUser(userID);
     }
 
+    private void printUser(int id){
+        System.out.println(" ");
+        System.out.println("Username: " + functionality.getUser(id).getUserName());
+        System.out.println("UserId: " + functionality.getUser(id).getUserId());
+        System.out.println("User initials: " + functionality.getUser(id).getIni());
+        System.out.println("User CPR: " + functionality.getUser(id).getCpr());
+        System.out.println("User password: " + functionality.getUser(id).getPassword());
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i <functionality.getUser(id).getRoles().size() ; i++) {
+            stringBuilder.append(functionality.getUser(id).getRoles().get(i));
+            stringBuilder.append(",");
+        }
+        String roles = stringBuilder.toString();
+        System.out.println("roles: " + roles);
+    }
 
 }
 

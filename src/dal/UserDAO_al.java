@@ -1,11 +1,9 @@
 package dal;
-import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import dto.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class UserDAO_al implements IUserDAO {
@@ -20,12 +18,6 @@ public class UserDAO_al implements IUserDAO {
                 user=userfromlist;
             }
         }
-       /* user.setUserId(userList.get(userId).getUserId());
-        user.setUserName(userList.get(userId).getUserName());
-        user.setIni(userList.get(userId).getIni());
-        user.setRoles(userList.get(userId).getRoles());
-        user.setCpr(userList.get(userId).getCpr());
-        user.setPassword(userList.get(userId).getPassword());*/
         return user;
     }
 

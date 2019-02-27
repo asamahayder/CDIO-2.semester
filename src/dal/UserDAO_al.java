@@ -18,12 +18,6 @@ public class UserDAO_al implements IUserDAO {
                 user=userfromlist;
             }
         }
-       /* user.setUserId(userList.get(userId).getUserId());
-        user.setUserName(userList.get(userId).getUserName());
-        user.setIni(userList.get(userId).getIni());
-        user.setRoles(userList.get(userId).getRoles());
-        user.setCpr(userList.get(userId).getCpr());
-        user.setPassword(userList.get(userId).getPassword());*/
         return user;
     }
 
@@ -36,10 +30,6 @@ public class UserDAO_al implements IUserDAO {
             userArrayList.add(user);
 
         }
-
-        /*for (int i = 0; i < userList.size(); i++){
-            System.out.println(userList.get(i));
-        }*/
 
         return userList;
     }

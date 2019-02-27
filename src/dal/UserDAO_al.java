@@ -27,19 +27,19 @@ public class UserDAO_al implements IUserDAO {
     @Override
     public List<User> getUserList() {
 
-        for (int i = 0; i < userList.size(); i++){
+        /*for (int i = 0; i < userList.size(); i++){
             System.out.println(userList.get(i));
-        }
+        }*/
 
         return userList;
     }
 
     @Override
     public void createUser(User user)  {
-        for (User _user : userList) {
+        /*for (User _user : userList) {
             if (_user.getUserId() == user.getUserId()) {
             }
-        }
+        }*/
         userList.add(user);
 
 

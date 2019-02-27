@@ -31,7 +31,6 @@ public class Funtionality_al {
         user.setIni(ini);
         user.setRoles(roles);
 
-
     }
 
     public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){

@@ -114,7 +114,7 @@ public class UserInterface {
         functionality.deleteUser(userID);
     }
 
-    private void printUser(int id){
+    private void printUser(int id) throws IUserDAO.DALException {
         System.out.println(" ");
         System.out.println("Username: " + functionality.getUser(id).getUserName());
         System.out.println("UserId: " + functionality.getUser(id).getUserId());

@@ -13,13 +13,9 @@ public class Functionaity {
         this.userDAO=userDAO;
     }
 
-    public User getUser(int userId){
+    public User getUser(int userId) throws IUserDAO.DALException {
         User user = new User(0);
-        try {
-            user = userDAO.getUser(userId);
-        }catch (IUserDAO.DALException e){
-            e.printStackTrace();
-        }
+        user = userDAO.getUser(userId);
         return user;
     }
 

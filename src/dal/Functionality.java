@@ -37,12 +37,7 @@ public class Functionality {
 
     public void createUser(int ID, String username, String ini, List roles, String CPR, String password){
         User user = new User(ID, username,ini,roles,CPR,password);
-        user.setUserName(username);
-        user.setUserId(ID);
-        user.setCpr(CPR);
-        user.setPassword(password);
-        user.setIni(ini);
-        user.setRoles(roles);
+        setIntoUser(ID, username, ini, roles, CPR, password, user);
         try {
             userDAO.createUser(user);
         }catch (IUserDAO.DALException e){
@@ -51,14 +46,18 @@ public class Functionality {
 
     }
 
-    public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){
-        User user = new User(0);
+    private void setIntoUser(int ID, String username, String ini, List roles, String CPR, String password, User user) {
         user.setUserName(username);
         user.setUserId(ID);
         user.setCpr(CPR);
         user.setPassword(password);
         user.setIni(ini);
         user.setRoles(roles);
+    }
+
+    public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){
+        User user = new User(0);
+        setIntoUser(ID, username, ini, roles, CPR, password, user);
         try {
             userDAO.updateUser(user);
         }catch (IUserDAO.DALException e){

@@ -17,7 +17,7 @@ public class UserInterface {
         boolean menuIsOn = true;
 
         MainMenuText();
-        while (menuIsOn == true) {
+        while (menuIsOn) {
             int menuTal = 0;
             menuTal = menuScanner.nextInt();
 

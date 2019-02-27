@@ -25,8 +25,8 @@ public class UserInterface {
                     System.out.println("----Show User List Menu----");
                     functionality.createConnection();
                     functionality.getUserList();
-                    functionality.closeConnection();
                     printUserList();
+                    functionality.closeConnection();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -75,6 +75,7 @@ public class UserInterface {
 
     private void PressEnterToContinue(Scanner menuScanner) {
         System.out.println("Indtast noget for at forsætte");
+        menuScanner.nextLine();
         menuScanner.nextLine();
     }
 
@@ -128,7 +129,9 @@ public class UserInterface {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < functionality.user.getRoles().size() ; i++) {
             stringBuilder.append(functionality.user.getRoles().get(i));
-            stringBuilder.append(",");
+            if (i!=functionality.user.getRoles().size()-1){
+                stringBuilder.append(",");
+            }
         }
         String roleString = stringBuilder.toString();
         System.out.println("users: " + roleString);
@@ -144,7 +147,7 @@ public class UserInterface {
             System.out.println("User password: " + functionality.users.get(i).getPassword());
             StringBuilder stringBuilder = new StringBuilder();
             for (int j = 0; j < functionality.users.get(i).getRoles().size() ; j++) {
-                stringBuilder.append(functionality.user.getRoles().get(j));
+                stringBuilder.append(functionality.users.get(i).getRoles().get(j));
                 stringBuilder.append(",");
             }
             String roleString = stringBuilder.toString();

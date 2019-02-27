@@ -4,6 +4,7 @@ import dto.User;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserDAO_al implements IUserDAO {
@@ -41,8 +42,7 @@ public class UserDAO_al implements IUserDAO {
 
     @Override
     public void updateUser(User user) {
-
-        userList.get(1).setRoles(Collections.singletonList("asd"));
+        userList.set(user.getUserId()-1, user);
     }
 
     @Override

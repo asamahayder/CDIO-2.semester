@@ -23,7 +23,10 @@ public class UserInterface {
             switch (menuTal) {
                 case 1:
                     System.out.println("----Show User List Menu----");
+                    functionality.createConnection();
                     functionality.getUserList();
+                    functionality.closeConnection();
+                    printUserList();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -31,14 +34,18 @@ public class UserInterface {
                     System.out.println("----Lookup User Menu----");
                     System.out.println("Indtast userid som skal findes");
                     int id = menuScanner.nextInt();
-                   // functionality.getUser(id);
-                    printUser(id);
+                    functionality.createConnection();
+                    functionality.getUser(id);
+                    functionality.closeConnection();
+                    printUser();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
                 case 3:
                     System.out.println("----Create User Menu----");
+                    functionality.createConnection();
                     input("createUser");
+                    functionality.closeConnection();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -67,7 +74,6 @@ public class UserInterface {
 
     private void PressEnterToContinue(Scanner menuScanner) {
         System.out.println("Indtast noget for at forsætte");
-        menuScanner.nextLine();
         menuScanner.nextLine();
     }
 
@@ -114,21 +120,42 @@ public class UserInterface {
         functionality.deleteUser(userID);
     }
 
-    private void printUser(int id){
+    private void printUser(){
         System.out.println(" ");
-        System.out.println("Username: " + functionality.getUser(id).getUserName());
-        System.out.println("UserId: " + functionality.getUser(id).getUserId());
-        System.out.println("User initials: " + functionality.getUser(id).getIni());
-        System.out.println("User CPR: " + functionality.getUser(id).getCpr());
-        System.out.println("User password: " + functionality.getUser(id).getPassword());
+        System.out.println("UserId: " + functionality.user.getUserId());
+        System.out.println("Username: " + functionality.user.getUserName());
+        System.out.println("User initials: " + functionality.user.getIni());
+        System.out.println("User CPR: " + functionality.user.getCpr());
+        System.out.println("User password: " + functionality.user.getPassword());
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i <functionality.getUser(id).getRoles().size() ; i++) {
-            stringBuilder.append(functionality.getUser(id).getRoles().get(i));
+        for (int i = 0; i < functionality.user.getRoles().size() ; i++) {
+            stringBuilder.append(functionality.user.getRoles().get(i));
             stringBuilder.append(",");
         }
-        String roles = stringBuilder.toString();
-        System.out.println("roles: " + roles);
+        String roleString = stringBuilder.toString();
+        System.out.println("users: " + roleString);
     }
+
+    private void printUserList(){
+        for (int i = 0; i < functionality.users.size(); i++) {
+            System.out.println(" ");
+            System.out.println("UserId: " + functionality.users.get(i).getUserId());
+            System.out.println("Username: " + functionality.users.get(i).getUserName());
+            System.out.println("User initials: " + functionality.users.get(i).getIni());
+            System.out.println("User CPR: " + functionality.users.get(i).getCpr());
+            System.out.println("User password: " + functionality.users.get(i).getPassword());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j = 0; j < functionality.users.get(i).getRoles().size() ; j++) {
+                stringBuilder.append(functionality.user.getRoles().get(j));
+                stringBuilder.append(",");
+            }
+            String roleString = stringBuilder.toString();
+            System.out.println("users: " + roleString);
+        }
+
+    }
+
+
 
 }
 

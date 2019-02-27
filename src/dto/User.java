@@ -90,7 +90,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", roles=" + roles + "]";
+        return "User [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", users=" + roles + "]";
     }
 }
 

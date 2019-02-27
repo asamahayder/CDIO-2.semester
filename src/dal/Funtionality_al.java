@@ -8,21 +8,23 @@ public class Funtionality_al {
 
     IUserDAO userDAO;
 
+    public User user;
+    public List<User> users;
+
     public Funtionality_al(IUserDAO userDAO) {
         this.userDAO=userDAO;
     }
 
     public User getUser(int userId){
-        User user = new User(0);
         try {
-            user = userDAO.getUser(userId);
+            user = userDAO.getUser(userId - 1);
         }catch (IUserDAO.DALException e){
             e.printStackTrace();
         }
         return user;
     }
 
-    public void createUser(int ID, String username, String ini, List roles, String CPR, String password){
+    public void createUser(int ID, String username, String ini, List roles, String CPR, String password) throws IUserDAO.DALException {
         User user = new User(ID, username,ini,roles,CPR,password);
         user.setUserName(username);
         user.setUserId(ID);
@@ -30,6 +32,7 @@ public class Funtionality_al {
         user.setPassword(password);
         user.setIni(ini);
         user.setRoles(roles);
+        userDAO.createUser(user);
 
     }
 
@@ -54,7 +57,7 @@ public class Funtionality_al {
 
     public void getUserList(){
         try {
-            userDAO.getUserList();
+            users = userDAO.getUserList();
         }catch (IUserDAO.DALException e){
             e.printStackTrace();
         }

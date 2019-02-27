@@ -31,8 +31,6 @@ public class User implements Serializable {
     public User(int ingenting){
     }
 
-    Scanner s = new Scanner(System.in);
-
     public int getUserId() {
         return userId;
     }

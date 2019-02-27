@@ -10,7 +10,7 @@ public class Main {
         //IUserDAO IDAO = new UserDAO_db();
         IUserDAO IDAO = new UserDAO_al();
         //Functionaity functionaity = new Functionaity(IDAO);
-        Funtionality_al funtionality_al = new Funtionality_al(IDAO);
+        Functionaity funtionality = new Functionaity(IDAO);
         UserInterface_al ui_al = new UserInterface_al(funtionality_al);
         //UserInterface ui = new UserInterface(functionaity);
         ui_al.showmenu();

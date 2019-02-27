@@ -24,7 +24,7 @@ class UserInterface_al {
                 case 1:
                     System.out.println("----Show User List Menu----");
                     functionality_al.getUserList();
-                    prin
+                    printUserList();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -32,8 +32,8 @@ class UserInterface_al {
                     System.out.println("----Lookup User Menu----");
                     System.out.println("Indtast userid som skal findes");
                     int id = menuScanner.nextInt();
-                    // functionality.getUser(id);
-                    printUser(id);
+                    functionality_al.getUser(id);
+                    printUser();
                     System.out.println();
                     PressEnterToContinue(menuScanner);
                     break;
@@ -84,7 +84,7 @@ class UserInterface_al {
         System.out.println("########################################");
     }
 
-    private void input(String method, Scanner menuScanner){
+    private void input(String method, Scanner menuScanner) throws IUserDAO.DALException {
         System.out.println("indtast ID: ");
         int ID = menuScanner.nextInt();
         System.out.println("indtast username: ");
@@ -112,20 +112,39 @@ class UserInterface_al {
         functionality_al.deleteUser(userID);
     }
 
-    private void printUser(int id) throws IUserDAO.DALException {
+    private void printUser() {
         System.out.println(" ");
-        System.out.println("Username: " + functionality_al.getUser(id).getUserName());
-        System.out.println("UserId: " + functionality_al.getUser(id).getUserId());
-        System.out.println("User initials: " + functionality_al.getUser(id).getIni());
-        System.out.println("User CPR: " + functionality_al.getUser(id).getCpr());
-        System.out.println("User password: " + functionality_al.getUser(id).getPassword());
+        System.out.println("Username: " + functionality_al.user.getUserId());
+        System.out.println("UserId: " + functionality_al.user.getUserName());
+        System.out.println("User initials: " + functionality_al.user.getIni());
+        System.out.println("User CPR: " + functionality_al.user.getCpr());
+        System.out.println("User password: " + functionality_al.user.getPassword());
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i <functionality_al.getUser(id).getRoles().size() ; i++) {
-            stringBuilder.append(functionality_al.getUser(id).getRoles().get(i));
+        for (int i = 0; i <functionality_al.user.getRoles().size() ; i++) {
+            stringBuilder.append(functionality_al.user.getRoles().get(i));
             stringBuilder.append(",");
         }
         String roles = stringBuilder.toString();
         System.out.println("roles: " + roles);
+    }
+
+    private void printUserList(){
+        for (int i = 0; i < functionality_al.users.size(); i++) {
+            System.out.println(" ");
+            System.out.println("UserId: " + functionality_al.users.get(i).getUserId());
+            System.out.println("Username: " + functionality_al.users.get(i).getUserName());
+            System.out.println("User initials: " + functionality_al.users.get(i).getIni());
+            System.out.println("User CPR: " + functionality_al.users.get(i).getCpr());
+            System.out.println("User password: " + functionality_al.users.get(i).getPassword());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int j = 0; j < functionality_al.users.get(i).getRoles().size() ; j++) {
+                stringBuilder.append(functionality_al.users.get(i).getRoles().get(j));
+                stringBuilder.append(",");
+            }
+            String roleString = stringBuilder.toString();
+            System.out.println("users: " + roleString);
+        }
+
     }
 
 

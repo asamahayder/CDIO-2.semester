@@ -5,14 +5,14 @@ import dto.User;
 import java.sql.SQLException;
 import java.util.List;
 
-public class Functionaity {
+public class Functionality {
 
     IUserDAO userDAO;
 
     public User user;
     public List<User> users;
 
-    public Functionaity(IUserDAO userDAO) {
+    public Functionality(IUserDAO userDAO) {
         this.userDAO=userDAO;
     }
 

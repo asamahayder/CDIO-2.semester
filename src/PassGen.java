@@ -28,6 +28,10 @@ public class PassGen {
         characters.add((char)63);
         characters.add((char)95);
 
+
+
+
+
         Collections.shuffle(characters);
     }
 

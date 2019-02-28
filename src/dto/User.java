@@ -1,8 +1,6 @@
 package dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,10 +26,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(int ingenting){
-    }
-
-    Scanner s = new Scanner(System.in);
+    /*public User(int ingenting){
+    }*/
 
     public int getUserId() {
         return userId;

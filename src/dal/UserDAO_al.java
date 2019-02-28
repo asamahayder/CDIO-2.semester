@@ -13,7 +13,7 @@ public class UserDAO_al implements IUserDAO {
 
     @Override
     public User getUser(int userId) {
-        User user = new User(0);
+        User user = null;
         for (User userfromlist:userList){
             if (userfromlist.getUserId()==userId){
                 user=userfromlist;
@@ -53,5 +53,10 @@ public class UserDAO_al implements IUserDAO {
     @Override
     public void closeConnection() throws SQLException {
 
+    }
+
+    @Override
+    public String createRoleString(User user) {
+        return null;
     }
 }

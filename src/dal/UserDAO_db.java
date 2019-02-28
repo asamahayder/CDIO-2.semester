@@ -28,7 +28,7 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     public User getUser(int userID) throws DALException, SQLException {
-        User user = new User(0);
+        User user = null;
         ArrayList<String> roles = new ArrayList<>();
         ResultSet showUser;
         try {
@@ -51,7 +51,7 @@ public class UserDAO_db implements IUserDAO {
             showAllUsers = statement.executeQuery("SELECT * FROM CDIO1");
 
             while (showAllUsers.next()) {
-                User user = new User(0);
+                User user = null;
                 ArrayList<String> roles = new ArrayList<>();
                 ResultSetLoop(showAllUsers, user, roles);
                 userList.add(user);
@@ -78,7 +78,6 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     public void createUser(User user) throws DALException {
-        createRoleString(user);
         //Definerer strengen som bliver brugt til at sende informationen ind i databasen
         String createUser = "INSERT INTO CDIO1 (userid, username, ini, cpr, pass, roles) " +
                 "VALUES('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getIni() + "', '" + user.getCpr() + "', '" + user.getPassword() + "', '" + createRoleString(user)+ "')";
@@ -106,7 +105,7 @@ public class UserDAO_db implements IUserDAO {
         }
     }
 
-    private String createRoleString(User user) {
+    public String createRoleString(User user) {
         StringBuilder rolesStringBuilder = new StringBuilder();
         List<String> roleListFromUser = user.getRoles();
         for (int i = 0; i < roleListFromUser.size() ; i++) {

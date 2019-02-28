@@ -67,7 +67,6 @@ public class Functionality {
     }
 
     public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){
-        User user = new User(0);
         setIntoUser(ID, username, ini, roles, CPR, password, user);
         try {
             userDAO.updateUser(user);

@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -79,6 +80,9 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+
     /**
      *
      * @param role

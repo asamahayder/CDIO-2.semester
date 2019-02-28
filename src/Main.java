@@ -10,7 +10,7 @@ public class Main {
         //UserInterface ui = new UserInterface(functionality);
         //ui.showmenu();
 
-
+        //Nedenstående kode er brugt til at lave et randomized password
         /*PassGen ps = new PassGen();
 
         StringBuilder sb = new StringBuilder();

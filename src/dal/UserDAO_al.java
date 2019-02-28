@@ -24,16 +24,10 @@ public class UserDAO_al implements IUserDAO {
 
     @Override
     public List<User> getUserList() {
-        ArrayList<User> userArrayList = new ArrayList<>();
-
-        for (int i = 0; i < userArrayList.size(); i++) {
-            User user = new User(0);
-            userArrayList.add(user);
-
-        }
-
         return userList;
     }
+
+
 
     @Override
     public void createUser(User user)  {

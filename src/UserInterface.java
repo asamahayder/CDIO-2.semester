@@ -3,6 +3,7 @@ import dal.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -166,10 +167,20 @@ public class UserInterface {
         ArrayList<String> roles = new ArrayList<>();
         do{
             System.out.println("press 1 for 'Master', 2 for 'Student', 3 for 'Admin'");
-            int choice = scanner.nextInt();
-            if (choice != 1 && choice!=2 && choice!=3){
-                System.out.println("not a valid input");
-            }
+            int choice = 0;
+            do {
+                try{
+                    choice = scanner.nextInt();
+
+                }catch (InputMismatchException e){
+                    scanner.nextLine();
+                }
+                if (choice != 1 && choice != 2 && choice != 3){
+                    System.out.println("invalid input. try again");
+                    choice = 0;
+                }
+            }while(choice <= 0);
+
             switch (choice) {
                 case 1:
                     if (roles.contains("Master")){

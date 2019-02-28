@@ -1,4 +1,4 @@
-import dal.Functionality;
+import  dal.Functionality;
 import dal.IUserDAO;
 import dal.UserDAO_al;
 import dal.UserDAO_db;

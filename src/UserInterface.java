@@ -109,7 +109,7 @@ public class UserInterface {
         ArrayList<String> roles = handleRoleChoices(menuScanner);
         System.out.println("indtast CPR: ");
         String CPR = menuScanner.nextLine();
-        System.out.println("indtast password: ");
+        System.out.println("indtast noget for at generere password");
         String password = menuScanner.nextLine();
         if (method.equals("createUser")){
             functionality.createUser(ID,username,ini, roles,CPR,password);

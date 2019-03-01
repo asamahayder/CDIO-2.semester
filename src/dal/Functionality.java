@@ -38,9 +38,7 @@ public class Functionality {
     public User getUser(int userId){
         try {
             user = userDAO.getUser(userId);
-        }catch (IUserDAO.DALException e){
-            e.printStackTrace();
-        }catch (SQLException e){
+        }catch (IUserDAO.DALException | SQLException e){
             e.printStackTrace();
         }
         return user;

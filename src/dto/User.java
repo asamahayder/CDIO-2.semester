@@ -1,9 +1,6 @@
 package dto;
 
-import dal.PassGen;
-
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.*;
 
 public class User implements Serializable {
@@ -28,8 +25,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    /*public User(int ingenting){
-    }*/
+    public User(int ingenting){
+    }
 
     public int getUserId() {
         return userId;

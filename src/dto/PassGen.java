@@ -1,4 +1,4 @@
-package dal;
+package dto;
 
 import java.util.*;
 import java.security.SecureRandom;

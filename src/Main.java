@@ -1,9 +1,6 @@
-import dal.IUserDAO;
 import dal.*;
-import dto.User;
 
 import java.sql.SQLException;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Main {

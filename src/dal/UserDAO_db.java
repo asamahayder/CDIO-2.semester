@@ -28,7 +28,7 @@ public class UserDAO_db implements IUserDAO {
 
     @Override
     public User getUser(int userID) throws DALException, SQLException {
-        User user = null;
+        User user = new User(0);
         ArrayList<String> roles = new ArrayList<>();
         ResultSet showUser;
         try {
@@ -51,7 +51,7 @@ public class UserDAO_db implements IUserDAO {
             showAllUsers = statement.executeQuery("SELECT * FROM CDIO1");
 
             while (showAllUsers.next()) {
-                User user = null;
+                User user = new User(0);
                 ArrayList<String> roles = new ArrayList<>();
                 ResultSetLoop(showAllUsers, user, roles);
                 userList.add(user);

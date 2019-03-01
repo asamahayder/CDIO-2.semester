@@ -1,35 +1,28 @@
 import dal.IUserDAO;
 import dal.*;
-import dto.User;
 
 import java.sql.SQLException;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws SQLException, IUserDAO.DALException {
+        //Denne metode kører igennem UserDAO_al, så den gemmer brugerne i et array
         //IUserDAO IDAO = new UserDAO_al();
         //Functionality functionality = new Functionality(IDAO);
         //UserInterface ui = new UserInterface(functionality);
         //ui.showmenu();
 
-        //Nedenstående kode er brugt til at lave et randomized password
-        /*PassGen ps = new PassGen();
 
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < 20; i++){
-            sb.append(ps.randomChar());
-        }
-        System.out.println(sb);
-        */
+        //Denne metode kører igennem UserDAO_db, så den gemmer brugerne i databasen
+        //IUserDAO IDAO = new UserDAO_db();
+        //Functionality functionality = new Functionality(IDAO);
+        //UserInterface ui = new UserInterface(functionality);
+        //ui.showmenu();
 
 
-
-
+        //Denne metode kører igennem UserDAO_fs, så den gemmer brugerne i filer på computeren
         IUserDAO IDAO = new UserDAO_fs();
         Functionality functionality = new Functionality(IDAO);
         UserInterface ui = new UserInterface(functionality);
         ui.showmenu();
-
     }
 }

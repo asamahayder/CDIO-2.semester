@@ -1,11 +1,10 @@
 package dto;
 
+import dal.PassGen;
+
 import java.io.Serializable;
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class User implements Serializable {
 
@@ -75,9 +74,15 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
+    /*public void setPassword(String password) {
         this.password = password;
+    }*/
+
+    public void setPassword(String password) {
+        PassGen pg = new PassGen();
+        this.password = pg.passBuild();
     }
+
     /**
      *
      * @param role

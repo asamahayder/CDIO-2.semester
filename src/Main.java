@@ -1,9 +1,7 @@
 import dal.IUserDAO;
 import dal.*;
-import dto.User;
 
 import java.sql.SQLException;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) throws SQLException, IUserDAO.DALException {
@@ -23,10 +21,8 @@ public class Main {
         System.out.println(sb);
         */
 
-
-
-
         IUserDAO IDAO = new UserDAO_fs();
+        ((UserDAO_fs) IDAO).createDirectory();
         Functionality functionality = new Functionality(IDAO);
         UserInterface ui = new UserInterface(functionality);
         ui.showmenu();

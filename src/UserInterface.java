@@ -120,6 +120,7 @@ public class UserInterface {
     }
 
     private void inputTilDeleteUser(Scanner menuScanner){
+        menuScanner.nextLine();
         System.out.println("indtast et userID som skal slettes: ");
         int userID = menuScanner.nextInt();
         functionality.deleteUser(userID);

@@ -92,4 +92,9 @@ public class Functionality {
         Collections.sort(users, new SortArrayList());
     }
 
+    public int getNextAvailableID(){
+        int nextAvailableID = userDAO.getNextAvailableID();
+        return  nextAvailableID;
+    }
+
 }

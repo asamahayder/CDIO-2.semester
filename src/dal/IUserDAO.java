@@ -15,6 +15,7 @@ public interface IUserDAO {
     void createConnection() throws SQLException;
     void closeConnection() throws SQLException;
     String createRoleString(User user);
+    int getNextAvailableID();
 
     public class DALException extends Exception {
 

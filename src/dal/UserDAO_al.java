@@ -59,4 +59,9 @@ public class UserDAO_al implements IUserDAO {
     public String createRoleString(User user) {
         return null;
     }
+
+    @Override
+    public int getNextAvailableID() {
+        return 0;
+    }
 }

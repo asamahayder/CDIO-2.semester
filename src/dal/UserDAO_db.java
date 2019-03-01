@@ -119,6 +119,11 @@ public class UserDAO_db implements IUserDAO {
     }
 
     @Override
+    public int getNextAvailableID() {
+        return 0;
+    }
+
+    @Override
     public void deleteUser(int userId) throws DALException {
         //Definerer strengen med clause koden er i
         String deleteByUserID = "DELETE FROM CDIO1 WHERE userid = '" + userId + "'";

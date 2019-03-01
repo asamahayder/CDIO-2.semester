@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO_fs implements IUserDAO {
+
+
     @Override
     public User getUser(int userId) throws DALException {
         User user = null;
         try{
-            FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Asama\\Desktop\\users\\" + userId + ".ser");
+            FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.home") + "/Desktop/users/" + userId + ".ser");
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             user = (User) objectInputStream.readObject();
             objectInputStream.close();
@@ -29,20 +31,24 @@ public class UserDAO_fs implements IUserDAO {
     @Override
     public List<User> getUserList() throws DALException {
         ArrayList<User> users = new ArrayList<>();
-        User user = null;
-        int numberOfUsers = new File("C:\\Users\\Asama\\Desktop\\users").list().length;
+        User user;
+        int numberOfUsers = new File(System.getProperty("user.home") + "/Desktop/users/").list().length;
         int userId = 1;
         int numberOfImportedUsers = 0;
         try {
+            FileInputStream fileInputStream;
+            ObjectInputStream objectInputStream;
             while (numberOfImportedUsers < numberOfUsers){
-                boolean fileExists = new File("C:\\Users\\Asama\\Desktop\\users\\"+userId+".ser").exists();
+                boolean fileExists = new File(System.getProperty("user.home") + "/Desktop/users/" + userId + ".ser").exists();
                 if (fileExists) {
-                    FileInputStream fileInputStream = new FileInputStream("C:\\Users\\Asama\\Desktop\\users\\" + userId + ".ser");
-                    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                    fileInputStream = new FileInputStream(System.getProperty("user.home")+ "/Desktop/users/" + userId + ".ser");
+                    objectInputStream = new ObjectInputStream(fileInputStream);
                     user = (User) objectInputStream.readObject();
                     users.add(user);
                     userId++;
                     numberOfImportedUsers++;
+                    fileInputStream.close();
+                    objectInputStream.close();
                 }
                 else{
                     userId++;
@@ -62,7 +68,7 @@ public class UserDAO_fs implements IUserDAO {
     public void createUser(User user) throws DALException {
 
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream("C:\\Users\\Asama\\Desktop\\users\\"+user.getUserId()+".ser");
+            FileOutputStream fileOutputStream = new FileOutputStream(System.getProperty("user.home") + "/Desktop/users/" + user.getUserId() + ".ser");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(user);
             objectOutputStream.close();
@@ -83,7 +89,7 @@ public class UserDAO_fs implements IUserDAO {
 
     @Override
     public void deleteUser(int userId) throws DALException {
-        File file = new File("C:\\Users\\Asama\\Desktop\\users\\"+userId+".ser");
+        File file = new File(System.getProperty("user.home")+"/Desktop/users/"+userId+".ser");
         Boolean deleted = file.delete();
         if (!deleted){
             System.out.println("failed to delete the file");
@@ -112,5 +118,30 @@ public class UserDAO_fs implements IUserDAO {
         }
         String roles = rolesStringBuilder.toString();
         return roles;
+    }
+
+    public void createDirectory(){
+        File newDirectory = new File(System.getProperty("user.home") + "/Desktop/users");
+        if (newDirectory.exists()){
+            return;
+        }else{
+            newDirectory.mkdir();
+            System.out.println("Skabte en mappe ved navn 'users' på skrivebordet.");
+        }
+    }
+
+    public int getNextAvailableID(){
+        int currentId = 1;
+        boolean idTaken;
+        do {
+            File file = new File(System.getProperty("user.home")+"/Desktop/users/"+currentId+".ser");
+            if (file.exists()){
+                idTaken=true;
+                currentId++;
+            }else {
+                idTaken=false;
+            }
+        }while (idTaken);
+        return currentId;
     }
 }

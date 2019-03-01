@@ -1,4 +1,8 @@
-import dal.*;
+import dal.Functionality;
+import dal.IUserDAO;
+import dal.UserDAO_al;
+import dal.UserDAO_db;
+import dal.UserDAO_fs;
 
 import java.sql.SQLException;
 import java.util.Scanner;

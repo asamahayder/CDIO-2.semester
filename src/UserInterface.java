@@ -76,7 +76,6 @@ public class UserInterface {
             if (!menuIsOn) break;
             else MainMenuText();
         }
-        menuScanner.close();
     }
 
     private void PressEnterToContinue(Scanner menuScanner) {

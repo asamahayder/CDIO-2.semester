@@ -4,32 +4,64 @@ import dto.User;
 
 import java.sql.SQLException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException, IUserDAO.DALException {
-        //IUserDAO IDAO = new UserDAO_al();
-        //Functionality functionality = new Functionality(IDAO);
-        //UserInterface ui = new UserInterface(functionality);
-        //ui.showmenu();
+        startProgram();
+    }
 
-        //Nedenstående kode er brugt til at lave et randomized password
-        /*PassGen ps = new PassGen();
+    private static void startProgram() throws SQLException, IUserDAO.DALException {
+        Functionality f;
+        UserInterface ui;
+        boolean menuIsOn = true;
+        Scanner menuScanner = new Scanner(System.in);
 
-        StringBuilder sb = new StringBuilder();
+        menuText();
+        int menuTal = menuScanner.nextInt();
 
-        for (int i = 0; i < 20; i++){
-            sb.append(ps.randomChar());
+        while (menuIsOn) {
+            switch (menuTal) {
+                case 1:
+                    IUserDAO IDAO_db = new UserDAO_db();
+                    f = new Functionality(IDAO_db);
+                    ui = new UserInterface(f);
+                    ui.showmenu();
+                    break;
+                case 2:
+                    IUserDAO IDAO_fs = new UserDAO_fs();
+                    f = new Functionality(IDAO_fs);
+                    ui = new UserInterface(f);
+                    ui.showmenu();
+                    break;
+                case 3:
+                    IUserDAO IDAO_al = new UserDAO_al();
+                    f = new Functionality(IDAO_al);
+                    ui = new UserInterface(f);
+                    ui.showmenu();
+                    break;
+                case 4:
+                    menuIsOn = false;
+                    break;
+            }
+            if (!menuIsOn) {
+                break;
+            }
+            else {
+                menuText();
+                menuTal = menuScanner.nextInt();
+            }
         }
-        System.out.println(sb);
-        */
+        menuScanner.close();
+    }
 
-
-
-
-        IUserDAO IDAO = new UserDAO_fs();
-        Functionality functionality = new Functionality(IDAO);
-        UserInterface ui = new UserInterface(functionality);
-        ui.showmenu();
-
+    private static void menuText() {
+        System.out.println("##########################################");
+        System.out.println("Vælg hvilken måde du vil gemme dataet    #");
+        System.out.println("1: Database (Database struktur)          #");
+        System.out.println("2: Filsystemet (Mappe struktur)          #");
+        System.out.println("3: Programmet (Arrayliste struktur)      #");
+        System.out.println("4: Luk programmet                        #");
+        System.out.println("##########################################");
     }
 }

@@ -1,4 +1,5 @@
 import dal.*;
+import dto.PassGen;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class UserInterface {
     public UserInterface(Functionality functionality) {
         this.functionality = functionality;
     }
+
+    PassGen pg = new PassGen();
 
     public void showmenu() throws IUserDAO.DALException, SQLException {
         Scanner menuScanner = new Scanner(System.in);
@@ -86,7 +89,7 @@ public class UserInterface {
 
 
     private void MainMenuText() {
-        System.out.println("#########Aflevering1 databasen##########");
+        System.out.println("###############CDIO_del1################");
         System.out.println("1: Se listen over databasen            #");
         System.out.println("2: Hent en specifik bruger             #");
         System.out.println("3: Opret en bruger                     #");
@@ -109,7 +112,7 @@ public class UserInterface {
         System.out.println("indtast CPR: ");
         String CPR = menuScanner.nextLine();
         System.out.println("indtast noget for at generere password");
-        String password = menuScanner.nextLine();
+        String password = functionality.createPassword();
         if (method.equals("createUser")){
             functionality.createUser(ID,username,ini, roles,CPR,password);
         }

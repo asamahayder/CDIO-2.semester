@@ -1,5 +1,6 @@
 package dal;
 
+import dto.PassGen;
 import dto.User;
 
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ public class Functionality {
 
     public User user;
     public List<User> users;
+    public PassGen pg = new PassGen();
 
     public Functionality(IUserDAO userDAO) {
         this.userDAO=userDAO;
@@ -71,6 +73,12 @@ public class Functionality {
         }catch (IUserDAO.DALException e){
             e.printStackTrace();
         }
+    }
+
+    public String createPassword(){
+      String password = pg.passBuild();
+
+       return password;
     }
 
     public void deleteUser(int userID){

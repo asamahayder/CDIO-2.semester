@@ -71,14 +71,14 @@ public class User implements Serializable {
         return password;
     }
 
-    /*public void setPassword(String password) {
-        this.password = password;
-    }*/
-
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /*public void setPassword(String password) {
         PassGen pg = new PassGen();
         this.password = pg.passBuild();
-    }
+    }*/
 
     /**
      *

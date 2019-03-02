@@ -38,9 +38,7 @@ public class Functionality {
     public User getUser(int userId){
         try {
             user = userDAO.getUser(userId);
-        }catch (IUserDAO.DALException e){
-            e.printStackTrace();
-        }catch (SQLException e){
+        }catch (IUserDAO.DALException | SQLException e){
             e.printStackTrace();
         }
         return user;
@@ -77,8 +75,9 @@ public class Functionality {
     }
 
     public String createPassword(){
-      String password = user.createPassword();
-       return password;
+        User user = new User(0);
+        String s = user.createPassword();
+        return s;
     }
 
     public void deleteUser(int userID){

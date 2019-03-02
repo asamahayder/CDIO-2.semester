@@ -108,8 +108,20 @@ public class UserInterface {
         ArrayList<String> roles = handleRoleChoices(menuScanner);
         System.out.println("indtast CPR: ");
         String CPR = menuScanner.nextLine();
-        System.out.println("indtast noget for at generere password");
+        System.out.println("indtast noget for at generere password...");
+        menuScanner.nextLine();
         String password = functionality.createPassword();
+
+        System.out.println("###################################");
+        System.out.println("###### Din brugerinformation ######");
+        System.out.println("###################################");
+        System.out.println("userID: " + ID);
+        System.out.println("username: "+ username);
+        System.out.println("Ini: " + ini);
+        System.out.println("Password: " + password);
+        System.out.println("Roles: " + roles);
+        System.out.println("###################################");
+
         if (method.equals("createUser")){
             functionality.createUser(ID,username,ini, roles,CPR,password);
         }

@@ -77,8 +77,8 @@ public class User implements Serializable {
 
     public String createPassword(){
         PassGen pg = new PassGen();
-        String password = pg.passBuild();
-        return password;
+        String s = pg.passBuild();
+        return s;
     }
 
     public boolean removeRole(String role){

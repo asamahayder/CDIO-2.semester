@@ -31,6 +31,7 @@ public class Main {
                     break;
                 case 2:
                     IUserDAO IDAO_fs = new UserDAO_fs();
+                    ((UserDAO_fs) IDAO_fs).createDirectory();
                     f = new Functionality(IDAO_fs);
                     ui = new UserInterface(f);
                     ui.showmenu();

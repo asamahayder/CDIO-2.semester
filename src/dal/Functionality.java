@@ -67,7 +67,7 @@ public class Functionality {
     }
 
     public void updateUser(int ID, String username, String ini, List roles, String CPR, String password){
-        setIntoUser(ID, username, ini, roles, CPR, password, user);
+        User user = new User(ID, username, ini, roles, CPR, password);
         try {
             userDAO.updateUser(user);
         }catch (IUserDAO.DALException e){

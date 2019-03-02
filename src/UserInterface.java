@@ -1,22 +1,19 @@
-import dal.*;
-import dto.PassGen;
+import dal.Functionality;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
     Functionality functionality;
 
+
     public UserInterface(Functionality functionality) {
         this.functionality = functionality;
     }
 
-    PassGen pg = new PassGen();
-
-    public void showmenu() throws IUserDAO.DALException, SQLException {
+    public void showmenu() throws SQLException {
         Scanner menuScanner = new Scanner(System.in);
         boolean menuIsOn = true;
 
@@ -89,7 +86,7 @@ public class UserInterface {
 
 
     private void MainMenuText() {
-        System.out.println("###############CDIO_del1################");
+        System.out.println("#################CDIO1##################");
         System.out.println("1: Se listen over databasen            #");
         System.out.println("2: Hent en specifik bruger             #");
         System.out.println("3: Opret en bruger                     #");
@@ -111,8 +108,20 @@ public class UserInterface {
         ArrayList<String> roles = handleRoleChoices(menuScanner);
         System.out.println("indtast CPR: ");
         String CPR = menuScanner.nextLine();
-        System.out.println("indtast noget for at generere password");
+        System.out.println("indtast noget for at generere password...");
+        menuScanner.nextLine();
         String password = functionality.createPassword();
+
+        System.out.println("###################################");
+        System.out.println("###### Din brugerinformation ######");
+        System.out.println("###################################");
+        System.out.println("userID: " + ID);
+        System.out.println("username: "+ username);
+        System.out.println("Ini: " + ini);
+        System.out.println("Password: " + password);
+        System.out.println("Roles: " + roles);
+        System.out.println("###################################");
+
         if (method.equals("createUser")){
             functionality.createUser(ID,username,ini, roles,CPR,password);
         }

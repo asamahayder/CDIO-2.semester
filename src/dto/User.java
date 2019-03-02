@@ -75,16 +75,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    /*public void setPassword(String password) {
+    public String createPassword(){
         PassGen pg = new PassGen();
-        this.password = pg.passBuild();
-    }*/
+        String s = pg.passBuild();
+        return s;
+    }
 
-    /**
-     *
-     * @param role
-     * @return true if role existed, false if not
-     */
     public boolean removeRole(String role){
         return this.roles.remove(role);
     }

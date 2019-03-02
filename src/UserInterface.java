@@ -1,22 +1,19 @@
-import dal.*;
-import dto.PassGen;
+import dal.Functionality;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class UserInterface {
     Functionality functionality;
 
+
     public UserInterface(Functionality functionality) {
         this.functionality = functionality;
     }
 
-    PassGen pg = new PassGen();
-
-    public void showmenu() throws IUserDAO.DALException, SQLException {
+    public void showmenu() throws SQLException {
         Scanner menuScanner = new Scanner(System.in);
         boolean menuIsOn = true;
 
@@ -89,7 +86,7 @@ public class UserInterface {
 
 
     private void MainMenuText() {
-        System.out.println("###############CDIO_del1################");
+        System.out.println("#################CDIO1##################");
         System.out.println("1: Se listen over databasen            #");
         System.out.println("2: Hent en specifik bruger             #");
         System.out.println("3: Opret en bruger                     #");

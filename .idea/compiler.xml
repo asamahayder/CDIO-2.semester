@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="mysql-connector-java" />
+        <module name="2.sem-CDIO_1" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="mysql-connector-java" target="7" />
+      <module name="2.sem-CDIO_1" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
